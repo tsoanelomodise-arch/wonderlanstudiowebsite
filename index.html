@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Wonderland Studio — Design that bends reality</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      background: #050505;
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .stagger-reveal > * {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .stagger-reveal.active > * {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Stagger delays */
+    .stagger-reveal.active > *:nth-child(1) { transition-delay: 0.1s; }
+    .stagger-reveal.active > *:nth-child(2) { transition-delay: 0.2s; }
+    .stagger-reveal.active > *:nth-child(3) { transition-delay: 0.3s; }
+    .stagger-reveal.active > *:nth-child(4) { transition-delay: 0.4s; }
+    .stagger-reveal.active > *:nth-child(5) { transition-delay: 0.5s; }
+
+    /* Mesh Gradient Animation Base */
+    @keyframes mesh-pulse {
+      0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+      33% { transform: translate(10%, -10%) scale(1.1) rotate(10deg); }
+      66% { transform: translate(-5%, 15%) scale(0.9) rotate(-5deg); }
+    }
+    .mesh-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px); /* Slightly sharper blur for neon effect */
+      z-index: -1;
+      animation: mesh-pulse 20s infinite ease-in-out;
+      opacity: 0.8; /* Higher opacity for glowing effect */
+      mix-blend-mode: screen; /* Screen mode makes colors glow on black */
+      /* Dramatic transitions for section changes */
+      transition: 
+        top 3s cubic-bezier(0.4, 0, 0.2, 1),
+        left 3s cubic-bezier(0.4, 0, 0.2, 1),
+        right 3s cubic-bezier(0.4, 0, 0.2, 1),
+        bottom 3s cubic-bezier(0.4, 0, 0.2, 1),
+        width 3s cubic-bezier(0.4, 0, 0.2, 1),
+        height 3s cubic-bezier(0.4, 0, 0.2, 1),
+        background-color 3s ease-in-out,
+        transform 3s ease-in-out;
+      will-change: top, left, width, height, background-color, transform;
+    }
+
+    /* Text Gradient Animation */
+    @keyframes gradient-x {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .animate-gradient-x {
+      background-size: 200% auto;
+      animation: gradient-x 4s linear infinite;
+    }
+    
+    /* Smooth Slow Gradient Animation */
+    @keyframes gradient-slow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .animate-gradient-slow {
+      background-size: 400% 400%;
+      animation: gradient-slow 15s ease infinite;
+    }
+    
+    /* Float Animation */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    .glass-card {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            display: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              DEFAULT: '#cf0000',
+              light: '#fde2e2',
+              dark: '#9b0000',
+              pink: '#ff4b91',
+              magenta: '#e90074',
+              violet: '#6a1b9a',
+            }
+          },
+          borderRadius: {
+            '2xl': '1.5rem',
+            '3xl': '2rem',
+            '4xl': '3rem',
+          }
+        }
+      }
+    }
+  </script>
+<script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0"
+  }
+}
+</script>
+</head>
+<body class="selection:bg-brand-pink selection:text-white antialiased">
+  <div id="root"></div>
+</body>
+</html>
