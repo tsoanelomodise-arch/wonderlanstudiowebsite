@@ -11,35 +11,80 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
   const reveal = useReveal();
 
   return (
-    <section className="relative min-h-[90vh] pt-32 pb-20 overflow-hidden flex flex-col items-center justify-center">
-      <div className="container mx-auto px-6 relative z-10">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#050505]">
+      {/* Deep Textured Background */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-[#080808]" />
+        {/* Stone/Concrete Texture Overlay */}
+        <div className="absolute inset-0 opacity-[0.15] mix-blend-overlay pointer-events-none" 
+          style={{ 
+            backgroundImage: 'url("https://www.transparenttextures.com/patterns/asfalt-dark.png")',
+            backgroundSize: '400px'
+          }} 
+        />
+        {/* Radial Spotlight */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(197,160,89,0.05)_0%,transparent_60%)]" />
+        {/* Vignette */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,rgba(0,0,0,0.8)_100%)]" />
+      </div>
+
+      <div className="container mx-auto px-10 md:px-16 relative z-20">
         <div 
           ref={reveal.ref as any}
-          className={`max-w-5xl mx-auto text-center reveal ${reveal.className}`}
+          className={`flex flex-col md:flex-row items-center justify-center gap-12 md:gap-32 reveal ${reveal.className}`}
         >
-          {/* Animated Badge */}
-          <div className="inline-flex relative group">
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 rounded-full blur opacity-40 group-hover:opacity-60 transition-opacity animate-gradient-x"></div>
-            <div className="relative inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-bold text-neutral-200 mb-12 hover:bg-white/20 transition-all cursor-default shadow-sm">
-              <Sparkles size={14} className="text-brand-magenta" />
-              <span className="tracking-widest uppercase">The future of creative production</span>
+          {/* Precise Golden Doorway from Image */}
+          <div className="relative w-64 h-[400px] md:w-80 md:h-[520px] flex-shrink-0 group">
+            {/* The Doorway Frame */}
+            <div className="absolute inset-0 z-20">
+              {/* Sharp 1px Gold Line */}
+              <div className="absolute inset-0 border-[1.5px] border-brand-gold/90 shadow-[0_0_15px_rgba(197,160,89,0.4)]" />
+              {/* Soft Inner Glow */}
+              <div className="absolute inset-0 border-[1px] border-brand-gold/20 blur-[2px]" />
             </div>
-          </div>
-          
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-display font-extrabold tracking-tighter leading-[0.95] mb-12 text-white">
-            Let's build something <br className="hidden md:block" />
-            <span className="bg-gradient-to-r from-purple-400 via-pink-500 to-blue-500 bg-clip-text text-transparent animate-gradient-x pb-2">Magical</span>
-          </h1>
+            
+            {/* Outer Bloom Glow */}
+            <div className="absolute -inset-8 bg-brand-gold/5 blur-[60px] z-10 opacity-60 group-hover:opacity-100 transition-opacity duration-1000" />
 
-          <p className="text-lg md:text-2xl text-neutral-400 mb-4 max-w-3xl mx-auto leading-relaxed font-medium">
-            Tired of generic agencies? Wonderland Studio uses AI-native workflows to deliver premium branding and content at <span className="text-white font-bold">10x speed</span>.
-          </p>
-          
-          <div className="flex justify-center gap-8 mt-12 opacity-60 hover:opacity-100 transition-opacity duration-500">
-            {['Strategy', 'Branding', 'Digital', 'Production'].map(tag => (
-              <span key={tag} className="text-xs font-bold uppercase tracking-widest text-neutral-300">{tag}</span>
-            ))}
+            {/* Internal Void */}
+            <div className="absolute inset-0 bg-[#020202] z-10 overflow-hidden shadow-inner">
+              {/* Subtle Internal Light Spill */}
+              <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-brand-gold/5 to-transparent" />
+            </div>
+
+            {/* Floor Reflection / Light Spill at Base */}
+            <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 w-[140%] h-24 bg-[radial-gradient(ellipse_at_top,rgba(197,160,89,0.2)_0%,transparent_70%)] z-0 blur-xl" />
           </div>
+
+          {/* Hero Text */}
+          <div className="text-left max-w-2xl">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif leading-tight mb-8 text-white tracking-tight">
+              Enter the World <br />
+              Behind the Idea
+            </h1>
+            
+            <p className="text-lg md:text-xl text-neutral-400 font-sans tracking-wide mb-10 max-w-md">
+              Design begins with curiosity. We build digital experiences that bend reality.
+            </p>
+
+            <button 
+              onClick={onCtaClick}
+              className="group flex items-center gap-4 text-xs font-bold tracking-[0.4em] uppercase text-brand-gold hover:text-white transition-all"
+            >
+              <span className="relative">
+                Explore Studio
+                <span className="absolute -bottom-2 left-0 w-0 h-[1px] bg-white transition-all group-hover:w-full" />
+              </span>
+              <div className="w-12 h-[1px] bg-brand-gold/50 group-hover:bg-white transition-all group-hover:w-20" />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-30 hover:opacity-60 transition-opacity">
+        <div className="w-6 h-10 rounded-full border border-white/30 flex items-start justify-center p-1.5">
+          <div className="w-[1px] h-2 bg-white animate-bounce" />
         </div>
       </div>
     </section>
