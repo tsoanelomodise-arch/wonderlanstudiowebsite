@@ -28,7 +28,7 @@ const Contact: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-sm font-bold text-neutral-500 uppercase tracking-widest">Email Us</p>
-                  <p className="text-xl font-bold text-white group-hover:text-brand-pink transition-colors">hello@wonderland.studio</p>
+                  <p className="text-xl font-bold text-white group-hover:text-brand-pink transition-colors">support@wonderlandstudio.co.za</p>
                 </div>
               </div>
               <div className="group flex items-center gap-6 cursor-pointer">

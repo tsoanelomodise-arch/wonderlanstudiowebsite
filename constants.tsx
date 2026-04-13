@@ -65,7 +65,7 @@ export const SERVICES: Service[] = [
 
 export const STATS: Stat[] = [
   { value: '120+', label: 'Projects Delivered' },
-  { value: '80+', label: 'Global Clients' },
+  { value: '35 +', label: 'Clients' },
   { value: '10Y', label: 'Experience' },
 ];
 

@@ -49,7 +49,7 @@ const About: React.FC = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {[
-                { title: 'AI-Enhanced Speed', desc: 'Campaigns launched in days, not months.' },
+                { title: 'Enhanced Speed', desc: 'Campaigns launched in days, not months.' },
                 { title: 'Dynamic Identity', desc: 'Visual systems that adapt to every platform.' },
                 { title: 'Global Reach', desc: 'Localized storytelling for diverse audiences.' },
                 { title: 'Unmatched Detail', desc: 'Pixel-perfect execution from concept to final frame.' }
