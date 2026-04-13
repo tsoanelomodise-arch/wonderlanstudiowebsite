@@ -24,24 +24,24 @@ const About: React.FC = () => {
                
                {/* Visual metaphor elements */}
                <div className="absolute top-[30%] left-[40%] animate-bounce" style={{ animationDuration: '3s' }}>
-                  <div className="w-20 h-20 bg-brand-pink rounded-full blur-2xl opacity-50" />
+                  <div className="w-20 h-20 bg-brand-gold rounded-full blur-2xl opacity-50" />
                   <Sparkles className="text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
                </div>
                <div className="absolute bottom-[40%] right-[30%] animate-bounce" style={{ animationDuration: '4s', animationDelay: '1s' }}>
-                  <div className="w-16 h-16 bg-brand-magenta rounded-full blur-2xl opacity-40" />
+                  <div className="w-16 h-16 bg-brand-gold rounded-full blur-2xl opacity-40" />
                   <Sparkles className="text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4" />
                </div>
              </div>
              
              <div className="absolute top-10 left-10">
-                <span className="text-brand-pink text-xs font-bold uppercase tracking-[0.3em] mb-4 block">Introducing</span>
+                <span className="text-brand-gold text-xs font-bold uppercase tracking-[0.3em] mb-4 block">Introducing</span>
                 <h3 className="text-6xl font-display font-extrabold tracking-tighter">The Bonus</h3>
              </div>
           </div>
 
           <div>
             <h2 className="text-4xl md:text-6xl font-display font-extrabold mb-8 leading-[1.1]">
-              Elevate your brand beyond the <span className="text-brand-pink italic">ordinary</span>.
+              Elevate your brand beyond the <span className="text-brand-gold italic">ordinary</span>.
             </h2>
             <p className="text-xl text-neutral-400 mb-12 leading-relaxed font-medium">
               We combine human intuition with cutting-edge technology to craft experiences that resonate. Our bonuses aren't just perks—they are the core of how we deliver value.
@@ -54,8 +54,8 @@ const About: React.FC = () => {
                 { title: 'Global Reach', desc: 'Localized storytelling for diverse audiences.' },
                 { title: 'Unmatched Detail', desc: 'Pixel-perfect execution from concept to final frame.' }
               ].map((item, i) => (
-                <div key={i} className="group p-6 rounded-3xl bg-neutral-900/50 border border-neutral-800 hover:border-brand-pink/50 transition-all">
-                  <CheckCircle2 className="text-brand-pink mb-4" size={24} />
+                <div key={i} className="group p-6 rounded-3xl bg-neutral-900/50 border border-neutral-800 hover:border-brand-gold/50 transition-all">
+                  <CheckCircle2 className="text-brand-gold mb-4" size={24} />
                   <h4 className="text-lg font-bold mb-2">{item.title}</h4>
                   <p className="text-neutral-500 text-sm">{item.desc}</p>
                 </div>

@@ -15,7 +15,7 @@ const Contact: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
           <div>
             <h2 className="text-4xl md:text-5xl font-display font-extrabold text-white mb-8">
-              Let's create something <span className="text-brand-pink">magical</span>.
+              Let's create something <span className="text-brand-gold">magical</span>.
             </h2>
             <p className="text-lg text-neutral-400 mb-12">
               Ready to elevate your brand? Drop us a line and we'll get back to you within 24 hours.
@@ -23,12 +23,12 @@ const Contact: React.FC = () => {
 
             <div className="space-y-8 mb-12">
               <div className="group flex items-center gap-6 cursor-pointer">
-                <div className="w-14 h-14 rounded-2xl bg-white/5 backdrop-blur-md flex items-center justify-center text-brand-pink group-hover:scale-110 group-hover:rotate-3 transition-all border border-white/10">
+                <div className="w-14 h-14 rounded-2xl bg-white/5 backdrop-blur-md flex items-center justify-center text-brand-gold group-hover:scale-110 group-hover:rotate-3 transition-all border border-white/10">
                   <Mail size={24} />
                 </div>
                 <div>
                   <p className="text-sm font-bold text-neutral-500 uppercase tracking-widest">Email Us</p>
-                  <p className="text-xl font-bold text-white group-hover:text-brand-pink transition-colors">support@wonderlandstudio.co.za</p>
+                  <p className="text-xl font-bold text-white group-hover:text-brand-gold transition-colors">support@wonderlandstudio.co.za</p>
                 </div>
               </div>
               <div className="group flex items-center gap-6 cursor-pointer">
@@ -51,7 +51,7 @@ const Contact: React.FC = () => {
             </div>
           </div>
 
-          <div className="glass-card p-10 rounded-[3rem] shadow-2xl shadow-black/20 hover:shadow-purple-900/10 transition-all duration-500">
+          <div className="glass-card p-10 rounded-[3rem] shadow-2xl shadow-black/20 hover:shadow-brand-gold/10 transition-all duration-500">
             <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -59,7 +59,7 @@ const Contact: React.FC = () => {
                   <input 
                     type="text" 
                     placeholder="John Doe"
-                    className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 focus:ring-2 focus:ring-brand-pink/20 focus:border-brand-pink/40 outline-none transition-all text-white placeholder:text-neutral-600"
+                    className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 focus:ring-2 focus:ring-brand-gold/20 focus:border-brand-gold/40 outline-none transition-all text-white placeholder:text-neutral-600"
                   />
                 </div>
                 <div>
@@ -67,14 +67,14 @@ const Contact: React.FC = () => {
                   <input 
                     type="email" 
                     placeholder="john@example.com"
-                    className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 focus:ring-2 focus:ring-brand-pink/20 focus:border-brand-pink/40 outline-none transition-all text-white placeholder:text-neutral-600"
+                    className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 focus:ring-2 focus:ring-brand-gold/20 focus:border-brand-gold/40 outline-none transition-all text-white placeholder:text-neutral-600"
                   />
                 </div>
               </div>
               <div>
                 <label className="block text-sm font-bold text-neutral-500 uppercase tracking-widest mb-2">Service</label>
                 <div className="relative">
-                  <select className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 focus:ring-2 focus:ring-brand-pink/20 focus:border-brand-pink/40 outline-none transition-all appearance-none cursor-pointer text-white">
+                  <select className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 focus:ring-2 focus:ring-brand-gold/20 focus:border-brand-gold/40 outline-none transition-all appearance-none cursor-pointer text-white">
                     <option className="bg-neutral-900">Brand Identity</option>
                     <option className="bg-neutral-900">Campaign Creative</option>
                     <option className="bg-neutral-900">Web Design</option>
@@ -90,7 +90,7 @@ const Contact: React.FC = () => {
                 <textarea 
                   rows={4}
                   placeholder="Tell us about your project..."
-                  className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 focus:ring-2 focus:ring-brand-pink/20 focus:border-brand-pink/40 outline-none transition-all resize-none text-white placeholder:text-neutral-600"
+                  className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 focus:ring-2 focus:ring-brand-gold/20 focus:border-brand-gold/40 outline-none transition-all resize-none text-white placeholder:text-neutral-600"
                 />
               </div>
               <button className="group w-full bg-white text-black py-5 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-neutral-200 transition-all transform active:scale-95 overflow-hidden relative">
@@ -98,7 +98,7 @@ const Contact: React.FC = () => {
                   Send Message
                   <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                 </span>
-                <div className="absolute inset-0 bg-brand-pink translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+                <div className="absolute inset-0 bg-brand-gold translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
               </button>
             </form>
           </div>

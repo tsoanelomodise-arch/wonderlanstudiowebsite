@@ -6,11 +6,11 @@ const ChatBar: React.FC = () => {
   return (
     <div className="max-w-3xl mx-auto w-full px-4 relative group">
       {/* Gradient Glow Effect */}
-      <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 rounded-[2.6rem] opacity-30 blur-lg group-hover:opacity-50 transition duration-500 animate-gradient-x"></div>
+      <div className="absolute -inset-0.5 bg-gradient-to-r from-brand-gold/60 via-white/20 to-brand-gold/60 rounded-[2.6rem] opacity-30 blur-lg group-hover:opacity-50 transition duration-500 animate-gradient-x"></div>
       
       {/* Gradient Border Container */}
-      <div className="relative p-[1px] rounded-[2.6rem] bg-gradient-to-r from-purple-500/30 via-pink-500/30 to-blue-500/30 group-hover:from-purple-500/60 group-hover:via-pink-500/60 group-hover:to-blue-500/60 transition-colors duration-500">
-        <div className="bg-[#0f0f0f]/90 backdrop-blur-xl rounded-[2.5rem] p-4 flex flex-col gap-4 shadow-2xl shadow-purple-500/10">
+      <div className="relative p-[1px] rounded-[2.6rem] bg-gradient-to-r from-brand-gold/30 via-white/10 to-brand-gold/30 group-hover:from-brand-gold/60 group-hover:via-white/20 group-hover:to-brand-gold/60 transition-colors duration-500">
+        <div className="bg-[#0f0f0f]/90 backdrop-blur-xl rounded-[2.5rem] p-4 flex flex-col gap-4 shadow-2xl shadow-brand-gold/5">
           <div className="px-4 py-3">
             <input 
               type="text" 

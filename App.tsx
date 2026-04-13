@@ -58,7 +58,7 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen font-sans selection:bg-brand-pink/30 text-neutral-200">
+    <div className="min-h-screen font-sans selection:bg-brand-gold/30 text-neutral-200">
       <Background activeSection={activeSection} />
       <Navbar activeSection={activeSection} onNavigate={handleNavigate} />
       

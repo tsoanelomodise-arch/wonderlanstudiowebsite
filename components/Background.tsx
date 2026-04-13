@@ -33,25 +33,25 @@ const THEMES: Record<string, SectionTheme> = {
   services: {
     baseColor: '#080808', 
     blobs: [
-      { color: '#1e3a8a', top: '10%', left: '20%', width: '900px', height: '900px', duration: '20s', delay: '0s' },
+      { color: '#C5A059', top: '10%', left: '20%', width: '900px', height: '900px', duration: '20s', delay: '0s' },
     ]
   },
   portfolio: {
     baseColor: '#080808', 
     blobs: [
-      { color: '#064e3b', top: '30%', right: '-15%', width: '1100px', height: '1100px', duration: '30s', delay: '0s' },
+      { color: '#C5A059', top: '30%', right: '-15%', width: '1100px', height: '1100px', duration: '30s', delay: '0s' },
     ]
   },
   about: {
     baseColor: '#080808',
     blobs: [
-      { color: '#7f1d1d', top: '40%', left: '40%', width: '1200px', height: '1200px', duration: '40s', delay: '0s' },
+      { color: '#C5A059', top: '40%', left: '40%', width: '1200px', height: '1200px', duration: '40s', delay: '0s' },
     ]
   },
   contact: {
     baseColor: '#080808',
     blobs: [
-      { color: '#7c2d12', bottom: '10%', left: '30%', width: '1000px', height: '1000px', duration: '30s', delay: '0s' },
+      { color: '#C5A059', bottom: '10%', left: '30%', width: '1000px', height: '1000px', duration: '30s', delay: '0s' },
     ]
   },
 };
