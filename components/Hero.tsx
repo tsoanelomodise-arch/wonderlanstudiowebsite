@@ -11,46 +11,30 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
   const reveal = useReveal();
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[#020202] pt-20 md:pt-0">
-      {/* Deep Textured Background - Matching the Image */}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#020202]">
+      {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[#050505]" />
-        {/* Stone/Concrete Texture Overlay */}
-        <div className="absolute inset-0 opacity-[0.2] mix-blend-overlay pointer-events-none" 
-          style={{ 
-            backgroundImage: 'url("https://www.transparenttextures.com/patterns/asfalt-dark.png")',
-            backgroundSize: '500px'
-          }} 
+        <img 
+          src="/input_file_0.png" 
+          alt="Wonderland Studio Background" 
+          className="w-full h-full object-cover md:object-center object-left opacity-80"
+          referrerPolicy="no-referrer"
         />
-        {/* Subtle Vignette */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_40%,rgba(0,0,0,0.9)_100%)]" />
+        {/* Vignette for depth and readability */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,rgba(0,0,0,0.8)_100%)]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60" />
       </div>
 
-      <div className="container mx-auto px-10 md:px-20 relative z-20">
+      <div className="container mx-auto px-6 md:px-20 relative z-20">
         <div 
           ref={reveal.ref as any}
-          className={`flex flex-col md:flex-row items-center justify-center md:justify-start gap-10 md:gap-40 reveal ${reveal.className}`}
+          className={`flex flex-col md:flex-row items-center justify-center md:justify-end gap-12 md:gap-40 reveal ${reveal.className}`}
         >
-          {/* Precise Golden Doorway from Image */}
-          <div className="relative w-32 h-[240px] md:w-64 md:h-[480px] flex-shrink-0 group">
-            {/* The Doorway Frame - Thin Glowing Line */}
-            <div className="absolute inset-0 z-20">
-              {/* Sharp 1px Gold Line */}
-              <div className="absolute inset-0 border-[1px] border-brand-gold/80 shadow-[0_0_10px_rgba(197,160,89,0.3)]" />
-              {/* Inner Glow */}
-              <div className="absolute inset-0 border-[1px] border-brand-gold/10 blur-[1px]" />
-            </div>
-            
-            {/* Outer Bloom Glow */}
-            <div className="absolute -inset-4 bg-brand-gold/5 blur-[40px] z-10 opacity-40 group-hover:opacity-70 transition-opacity duration-1000" />
-
-            {/* Floor Reflection / Light Spill at Base - Matching Image */}
-            <div className="absolute -bottom-4 left-0 right-0 h-12 bg-[radial-gradient(ellipse_at_top,rgba(197,160,89,0.25)_0%,transparent_70%)] z-10 blur-md" />
-            <div className="absolute -bottom-1 left-1/4 right-1/4 h-2 bg-brand-gold/20 z-20 blur-sm" />
-          </div>
+          {/* Spacer for the doorway in the background image - adjusted for better alignment */}
+          <div className="hidden md:block w-1/3 lg:w-1/2 h-[480px] flex-shrink-0" />
 
           {/* Hero Text */}
-          <div className="text-center md:text-left max-w-2xl">
+          <div className="text-center md:text-left max-w-2xl pt-20 md:pt-0">
             <h1 className="text-4xl md:text-7xl lg:text-8xl font-serif leading-tight mb-6 md:mb-8 text-white tracking-tight">
               Enter the World <br />
               Behind the Idea
