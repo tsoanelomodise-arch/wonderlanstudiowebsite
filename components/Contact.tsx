@@ -12,7 +12,7 @@ const Contact: React.FC = () => {
         ref={reveal.ref as any}
         className={`container mx-auto px-6 reveal ${reveal.className}`}
       >
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
           <div>
             <h2 className="text-4xl md:text-5xl font-display font-extrabold text-white mb-8">
               Let's create something <span className="text-brand-gold">magical</span>.
@@ -28,7 +28,7 @@ const Contact: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-sm font-bold text-neutral-500 uppercase tracking-widest">Email Us</p>
-                  <p className="text-xl font-bold text-white group-hover:text-brand-gold transition-colors">support@wonderlandstudio.co.za</p>
+                  <p className="text-lg md:text-xl font-bold text-white group-hover:text-brand-gold transition-colors break-all md:break-normal">support@wonderlandstudio.co.za</p>
                 </div>
               </div>
               <div className="group flex items-center gap-6 cursor-pointer">
@@ -37,7 +37,7 @@ const Contact: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-sm font-bold text-neutral-500 uppercase tracking-widest">Visit Us</p>
-                  <p className="text-xl font-bold text-white group-hover:text-neutral-300 transition-colors">1 Jacobs Ave, Fairway, Johannesburg</p>
+                  <p className="text-lg md:text-xl font-bold text-white group-hover:text-neutral-300 transition-colors">1 Jacobs Ave, Fairway, Johannesburg</p>
                 </div>
               </div>
             </div>
@@ -51,7 +51,7 @@ const Contact: React.FC = () => {
             </div>
           </div>
 
-          <div className="glass-card p-10 rounded-[3rem] shadow-2xl shadow-black/20 hover:shadow-brand-gold/10 transition-all duration-500">
+          <div className="glass-card p-6 md:p-10 rounded-[2rem] md:rounded-[3rem] shadow-2xl shadow-black/20 hover:shadow-brand-gold/10 transition-all duration-500">
             <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>

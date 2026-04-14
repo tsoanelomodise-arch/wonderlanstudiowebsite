@@ -28,7 +28,7 @@ const Portfolio: React.FC = () => {
           className={`flex flex-col md:flex-row justify-between items-center mb-16 gap-8 reveal ${revealTitle.className}`}
         >
           <div>
-             <h2 className="text-4xl md:text-5xl font-display font-extrabold text-white mb-4">
+             <h2 className="text-3xl md:text-5xl font-display font-extrabold text-white mb-4">
                Selected Works
              </h2>
              <p className="text-neutral-400 font-medium">Pushing boundaries across mediums</p>
@@ -58,7 +58,7 @@ const Portfolio: React.FC = () => {
           {filteredProjects.map((project) => (
             <div 
               key={project.id} 
-              className="group relative rounded-[2.5rem] overflow-hidden cursor-pointer bg-neutral-900 border border-white/5 transition-all duration-500 hover:shadow-2xl hover:shadow-emerald-500/10"
+              className="group relative rounded-[2rem] md:rounded-[2.5rem] overflow-hidden cursor-pointer bg-neutral-900 border border-white/5 transition-all duration-500 hover:shadow-2xl hover:shadow-emerald-500/10"
             >
               <div className="aspect-[4/5] overflow-hidden">
                 <img 

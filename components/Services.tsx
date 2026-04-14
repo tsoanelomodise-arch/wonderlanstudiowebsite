@@ -30,7 +30,7 @@ const Services: React.FC = () => {
           className={`max-w-3xl mb-20 reveal ${revealTitle.className}`}
         >
           <span className="text-brand-gold text-xs font-bold uppercase tracking-[0.4em] mb-4 block">Our Expertise</span>
-          <h2 className="text-4xl md:text-6xl font-serif text-white mb-6 leading-tight">
+          <h2 className="text-3xl md:text-6xl font-serif text-white mb-6 leading-tight">
             Everything you need to <span className="text-brand-gold italic">scale.</span>
           </h2>
           <p className="text-lg text-neutral-400 font-sans tracking-wide leading-relaxed max-w-2xl">
@@ -45,7 +45,7 @@ const Services: React.FC = () => {
           {SERVICES.map((service, idx) => (
             <div 
               key={idx} 
-              className="group glass-card p-10 rounded-4xl transition-all duration-700 hover:-translate-y-4 hover:shadow-[0_20px_50px_rgba(197,160,89,0.05)] border-white/5 hover:border-brand-gold/20"
+              className="group glass-card p-8 md:p-10 rounded-3xl md:rounded-4xl transition-all duration-700 hover:-translate-y-4 hover:shadow-[0_20px_50px_rgba(197,160,89,0.05)] border-white/5 hover:border-brand-gold/20"
             >
               <div className={`w-16 h-16 rounded-3xl bg-white/5 text-brand-gold flex items-center justify-center mb-10 group-hover:scale-110 transition-transform duration-500 shadow-sm border border-white/10 group-hover:border-brand-gold/30`}>
                 {ICON_MAP[service.icon]}

@@ -29,7 +29,7 @@ const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate }) => {
   return (
     <nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled ? 'py-4 bg-black/80 backdrop-blur-md' : 'py-10 bg-transparent'
+        isScrolled ? 'py-4 bg-black/80 backdrop-blur-md' : 'py-6 md:py-10 bg-transparent'
       }`}
     >
       <div className="container mx-auto px-10 md:px-16">

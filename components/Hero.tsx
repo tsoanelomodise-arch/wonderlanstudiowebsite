@@ -11,7 +11,7 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
   const reveal = useReveal();
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#020202]">
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[#020202] pt-20 md:pt-0">
       {/* Deep Textured Background - Matching the Image */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-[#050505]" />
@@ -29,10 +29,10 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
       <div className="container mx-auto px-10 md:px-20 relative z-20">
         <div 
           ref={reveal.ref as any}
-          className={`flex flex-col md:flex-row items-center justify-start gap-16 md:gap-40 reveal ${reveal.className}`}
+          className={`flex flex-col md:flex-row items-center justify-center md:justify-start gap-10 md:gap-40 reveal ${reveal.className}`}
         >
           {/* Precise Golden Doorway from Image */}
-          <div className="relative w-48 h-[360px] md:w-64 md:h-[480px] flex-shrink-0 group">
+          <div className="relative w-32 h-[240px] md:w-64 md:h-[480px] flex-shrink-0 group">
             {/* The Doorway Frame - Thin Glowing Line */}
             <div className="absolute inset-0 z-20">
               {/* Sharp 1px Gold Line */}
@@ -50,19 +50,19 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
           </div>
 
           {/* Hero Text */}
-          <div className="text-left max-w-2xl">
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif leading-tight mb-8 text-white tracking-tight">
+          <div className="text-center md:text-left max-w-2xl">
+            <h1 className="text-4xl md:text-7xl lg:text-8xl font-serif leading-tight mb-6 md:mb-8 text-white tracking-tight">
               Enter the World <br />
               Behind the Idea
             </h1>
             
-            <p className="text-lg md:text-xl text-neutral-400 font-sans tracking-wide mb-10 max-w-md">
+            <p className="text-base md:text-xl text-neutral-400 font-sans tracking-wide mb-10 max-w-md mx-auto md:mx-0">
               Design begins with curiosity. We build digital experiences that bend reality.
             </p>
 
             <button 
               onClick={onCtaClick}
-              className="group flex items-center gap-4 text-xs font-bold tracking-[0.4em] uppercase text-brand-gold hover:text-white transition-all"
+              className="group flex items-center justify-center md:justify-start gap-4 text-xs font-bold tracking-[0.4em] uppercase text-brand-gold hover:text-white transition-all mx-auto md:mx-0"
             >
               <span className="relative">
                 Explore Studio
@@ -75,7 +75,7 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-20 hover:opacity-50 transition-opacity">
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-4 opacity-20 hover:opacity-50 transition-opacity">
         <div className="w-6 h-10 rounded-full border border-white/20 flex items-start justify-center p-1.5">
           <div className="w-[1px] h-2 bg-white animate-bounce" />
         </div>

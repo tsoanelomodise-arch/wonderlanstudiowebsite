@@ -12,7 +12,7 @@ const About: React.FC = () => {
         ref={reveal.ref as any}
         className={`container mx-auto px-6 relative z-10 reveal ${reveal.className}`}
       >
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <div className="relative group overflow-hidden rounded-[3rem]">
              <div className="aspect-square bg-neutral-900 rounded-[3rem] overflow-hidden border border-neutral-800 relative">
                <img 
@@ -35,15 +35,15 @@ const About: React.FC = () => {
              
              <div className="absolute top-10 left-10">
                 <span className="text-brand-gold text-xs font-bold uppercase tracking-[0.3em] mb-4 block">Introducing</span>
-                <h3 className="text-6xl font-display font-extrabold tracking-tighter">The Bonus</h3>
+                <h3 className="text-4xl md:text-6xl font-display font-extrabold tracking-tighter">The Bonus</h3>
              </div>
           </div>
 
           <div>
-            <h2 className="text-4xl md:text-6xl font-display font-extrabold mb-8 leading-[1.1]">
+            <h2 className="text-3xl md:text-6xl font-display font-extrabold mb-8 leading-[1.1]">
               Elevate your brand beyond the <span className="text-brand-gold italic">ordinary</span>.
             </h2>
-            <p className="text-xl text-neutral-400 mb-12 leading-relaxed font-medium">
+            <p className="text-lg md:text-xl text-neutral-400 mb-12 leading-relaxed font-medium">
               We combine human intuition with cutting-edge technology to craft experiences that resonate. Our bonuses aren't just perks—they are the core of how we deliver value.
             </p>
             
