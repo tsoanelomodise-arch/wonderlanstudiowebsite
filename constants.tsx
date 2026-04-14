@@ -47,19 +47,19 @@ export const SERVICES: Service[] = [
     title: 'Brand Identity',
     description: 'We build living systems, not just logos. Strategy-first visual identities that scale.',
     icon: 'palette',
-    accent: 'bg-blue-50 text-blue-600',
+    accent: 'text-brand-gold',
   },
   {
     title: 'Campaign Creative',
     description: 'High-impact concepts for social, outdoor, and digital platforms that command attention.',
     icon: 'rocket',
-    accent: 'bg-orange-50 text-orange-600',
+    accent: 'text-brand-gold',
   },
   {
     title: 'Web & Digital',
     description: 'Seamless experiences crafted with modern performance and conversion in mind.',
     icon: 'globe',
-    accent: 'bg-brand-light text-brand',
+    accent: 'text-brand-gold',
   },
 ];
 
