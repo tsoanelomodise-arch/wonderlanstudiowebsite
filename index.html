@@ -113,6 +113,14 @@
     .doorway-glow {
       box-shadow: 0 0 40px rgba(197, 160, 89, 0.2);
     }
+    
+    @keyframes doorway-pulse {
+      0%, 100% { opacity: 0.9; filter: drop-shadow(0 0 10px rgba(197, 160, 89, 0.4)); }
+      50% { opacity: 1; filter: drop-shadow(0 0 20px rgba(197, 160, 89, 0.6)); }
+    }
+    .animate-doorway {
+      animation: doorway-pulse 4s ease-in-out infinite;
+    }
   </style>
   <script>
     tailwind.config = {

@@ -12,17 +12,42 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#020202]">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <img 
-          src="/input_file_0.png" 
-          alt="Wonderland Studio Background" 
-          className="w-full h-full object-cover md:object-center object-left opacity-80"
-          referrerPolicy="no-referrer"
+      {/* Recreated Background with CSS */}
+      <div className="absolute inset-0 z-0 bg-[#050505]">
+        {/* Wall Texture */}
+        <div className="absolute inset-0 opacity-[0.15] pointer-events-none mix-blend-overlay" 
+          style={{ backgroundImage: 'url("https://www.transparenttextures.com/patterns/asfalt-dark.png")' }} 
         />
+        
+        {/* The Floor */}
+        <div className="absolute bottom-0 left-0 right-0 h-[40%] bg-[#030303]"
+          style={{ 
+            backgroundImage: 'radial-gradient(ellipse at 20% 0%, rgba(197, 160, 89, 0.08) 0%, transparent 70%)',
+          }}
+        >
+           <div className="absolute inset-0 opacity-[0.1]" 
+            style={{ backgroundImage: 'url("https://www.transparenttextures.com/patterns/carbon-fibre.png")' }} 
+          />
+          {/* Floor Shadow/Perspective */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-transparent" />
+        </div>
+
+        {/* The Doorway */}
+        <div className="absolute left-[8%] md:left-[15%] bottom-[38%] w-[160px] md:w-[220px] h-[320px] md:h-[440px] animate-doorway">
+          {/* The Frame (Thin Golden Line) */}
+          <div className="absolute inset-0 border-[1.5px] border-brand-gold/90 shadow-[0_0_15px_rgba(197,160,89,0.5),0_0_40px_rgba(197,160,89,0.2)]">
+            {/* Inner Darkness */}
+            <div className="absolute inset-0 bg-black/60" />
+          </div>
+          
+          {/* Floor Light Spill (Subtle Glow) */}
+          <div className="absolute -bottom-[80px] left-1/2 -translate-x-1/2 w-[280px] h-[120px] bg-brand-gold/10 blur-[50px] rounded-full opacity-60" />
+          <div className="absolute -bottom-[10px] left-1/2 -translate-x-1/2 w-[160px] h-[30px] bg-brand-gold/20 blur-[15px] rounded-full" />
+        </div>
+
         {/* Vignette for depth and readability */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,rgba(0,0,0,0.8)_100%)]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_40%,rgba(0,0,0,0.95)_100%)]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
       </div>
 
       <div className="container mx-auto px-6 md:px-20 relative z-20">
