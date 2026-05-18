@@ -22,7 +22,7 @@ const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate }) => {
   const navLinks = [
     { name: 'Studio', id: 'about' },
     { name: 'Work', id: 'portfolio' },
-    { name: 'Process', id: 'services' },
+    { name: 'Our Expertise', id: 'services' },
     { name: 'Contact', id: 'contact' },
   ];
 

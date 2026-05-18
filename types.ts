@@ -4,7 +4,11 @@ export interface Project {
   title: string;
   category: string;
   image: string;
-  description?: string;
+  description: string;
+  client?: string;
+  year?: string;
+  tags?: string[];
+  results?: string[];
 }
 
 export interface Service {
