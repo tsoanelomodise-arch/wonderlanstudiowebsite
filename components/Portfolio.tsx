@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, ExternalLink, Calendar, User, Tag, CheckCircle2 } from 'lucide-react';
+import { X, ExternalLink, Calendar, User, Tag, CheckCircle2, ChevronLeft, ChevronRight } from 'lucide-react';
 import { PROJECTS } from '../constants';
 import { useReveal } from '../hooks/useReveal';
 import { Project } from '../types';
@@ -9,7 +9,12 @@ import { Project } from '../types';
 const Portfolio: React.FC = () => {
   const [filter, setFilter] = useState('All');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
   const revealTitle = useReveal();
+
+  useEffect(() => {
+    setActiveImageIndex(0);
+  }, [selectedProject]);
   
   const categories = ['All', 'Brand Design', 'Campaign', 'Web Design', 'Packaging'];
 
@@ -96,6 +101,7 @@ const Portfolio: React.FC = () => {
                     layoutId={`img-${project.id}`}
                     src={project.image} 
                     alt={project.title}
+                    referrerPolicy="no-referrer"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[2000ms] ease-out opacity-80 group-hover:opacity-100"
                   />
                 </div>
@@ -177,14 +183,86 @@ const Portfolio: React.FC = () => {
                  </p>
               </div>
 
-              <div className="w-full md:w-3/5 h-[400px] md:h-auto relative">
-                <motion.img 
-                  layoutId={`img-${selectedProject.id}`}
-                  src={selectedProject.image} 
-                  alt={selectedProject.title}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-neutral-900 via-transparent to-transparent hidden md:block" />
+              <div className="w-full md:w-3/5 h-[400px] md:h-auto relative bg-neutral-950/40 flex items-center justify-center overflow-hidden min-h-[400px] md:min-h-[500px]">
+                {(() => {
+                  const projectImages = selectedProject.images && selectedProject.images.length > 0
+                    ? selectedProject.images
+                    : [selectedProject.image];
+                  
+                  const nextImage = (e: React.MouseEvent) => {
+                    e.stopPropagation();
+                    setActiveImageIndex((prev) => (prev + 1) % projectImages.length);
+                  };
+
+                  const prevImage = (e: React.MouseEvent) => {
+                    e.stopPropagation();
+                    setActiveImageIndex((prev) => (prev - 1 + projectImages.length) % projectImages.length);
+                  };
+
+                  return (
+                    <>
+                      <div className="absolute inset-0 w-full h-full flex items-center justify-center overflow-hidden">
+                        <AnimatePresence mode="wait">
+                          <motion.img 
+                            key={activeImageIndex}
+                            initial={{ opacity: 0, scale: 0.98 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 1.02 }}
+                            transition={{ duration: 0.35, ease: "easeOut" }}
+                            src={projectImages[activeImageIndex]} 
+                            alt={`${selectedProject.title} view ${activeImageIndex + 1}`}
+                            referrerPolicy="no-referrer"
+                            className="w-full h-full object-cover absolute inset-0"
+                          />
+                        </AnimatePresence>
+                      </div>
+
+                      <div className="absolute inset-0 bg-gradient-to-r from-neutral-900 via-transparent to-transparent hidden md:block pointer-events-none z-10" />
+
+                      {/* Image Arrow Controls */}
+                      {projectImages.length > 1 && (
+                        <>
+                          <button 
+                            onClick={prevImage}
+                            className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/60 hover:bg-brand-gold hover:text-black rounded-full flex items-center justify-center text-white transition-all border border-white/10 z-20 hover:scale-105 active:scale-95"
+                          >
+                            <ChevronLeft size={20} />
+                          </button>
+                          <button 
+                            onClick={nextImage}
+                            className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/60 hover:bg-brand-gold hover:text-black rounded-full flex items-center justify-center text-white transition-all border border-white/10 z-20 hover:scale-105 active:scale-95"
+                          >
+                            <ChevronRight size={20} />
+                          </button>
+                        </>
+                      )}
+
+                      {/* Beautiful Thumbnails Bar */}
+                      {projectImages.length > 1 && (
+                        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-35 bg-black/70 backdrop-blur-md px-3 py-2 rounded-2xl border border-white/10 max-w-[90%] overflow-x-auto scrollbar-none shadow-xl">
+                          {projectImages.map((img, idx) => (
+                            <button
+                              key={idx}
+                              onClick={(e) => { e.stopPropagation(); setActiveImageIndex(idx); }}
+                              className={`relative w-12 h-12 rounded-xl overflow-hidden border-2 transition-all shrink-0 hover:scale-105 ${
+                                idx === activeImageIndex 
+                                  ? 'border-brand-gold scale-105 shadow-[0_0_12px_rgba(197,160,89,0.4)] opacity-100' 
+                                  : 'border-transparent opacity-50 hover:opacity-100'
+                              }`}
+                            >
+                              <img 
+                                src={img} 
+                                alt={`thumbnail ${idx + 1}`} 
+                                className="w-full h-full object-cover" 
+                                referrerPolicy="no-referrer"
+                              />
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </>
+                  );
+                })()}
               </div>
 
               <div className="w-full md:w-2/5 p-8 md:p-12 flex flex-col justify-center bg-neutral-900">
