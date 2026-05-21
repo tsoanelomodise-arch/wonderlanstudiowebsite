@@ -11,11 +11,19 @@ export interface Project {
   results?: string[];
 }
 
+export interface SubSection {
+  title: string;
+  description: string;
+  bullets: string[];
+}
+
 export interface Service {
   title: string;
   description: string;
   icon: string;
   accent: string;
+  bullets?: string[];
+  subsections?: SubSection[];
 }
 
 export interface Stat {

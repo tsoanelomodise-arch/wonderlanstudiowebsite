@@ -75,9 +75,12 @@ const Contact: React.FC = () => {
                 <label className="block text-sm font-bold text-neutral-500 uppercase tracking-widest mb-2">Service</label>
                 <div className="relative">
                   <select className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 focus:ring-2 focus:ring-brand-gold/20 focus:border-brand-gold/40 outline-none transition-all appearance-none cursor-pointer text-white">
-                    <option className="bg-neutral-900">Brand Identity</option>
-                    <option className="bg-neutral-900">Campaign Creative</option>
-                    <option className="bg-neutral-900">Web Design</option>
+                    <option className="bg-neutral-900">Website Design & Development</option>
+                    <option className="bg-neutral-900">Branding & Visual Identity</option>
+                    <option className="bg-neutral-900">Social Media Management</option>
+                    <option className="bg-neutral-900">Content Creation</option>
+                    <option className="bg-neutral-900">Digital Advertising</option>
+                    <option className="bg-neutral-900">Systems & Software Development</option>
                     <option className="bg-neutral-900">Other</option>
                   </select>
                   <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-neutral-500">
