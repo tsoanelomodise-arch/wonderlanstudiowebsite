@@ -51,7 +51,7 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
       <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 relative z-20 pt-6">
         <div className="text-center mb-6">
           <p className="text-[11px] font-semibold tracking-widest text-neutral-400 uppercase">
-            Trusted by teams of every scale
+            Trusted by companies of every scale
           </p>
         </div>
 

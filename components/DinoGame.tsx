@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import { RotateCcw, Volume2, VolumeX, Smartphone } from 'lucide-react';
+import { RotateCcw } from 'lucide-react';
 
 interface DinoGameProps {
   className?: string;
@@ -18,58 +18,12 @@ export const DinoGame: React.FC<DinoGameProps> = ({ className = '' }) => {
       return 0;
     }
   });
-  const [muted, setMuted] = useState<boolean>(false);
   const [isTouchDevice, setIsTouchDevice] = useState<boolean>(false);
 
-  // Sound generator using Web Audio API (no external asset files needed!)
-  const playSound = useCallback((type: 'jump' | 'score' | 'hit') => {
-    if (muted) return;
-    try {
-      const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
-      if (!AudioCtx) return;
-      const ctx = new AudioCtx();
-      
-      if (type === 'jump') {
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.type = 'square';
-        osc.frequency.setValueAtTime(150, ctx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(320, ctx.currentTime + 0.08);
-        gain.gain.setValueAtTime(0.15, ctx.currentTime);
-        gain.gain.linearRampToValueAtTime(0.01, ctx.currentTime + 0.08);
-        osc.start();
-        osc.stop(ctx.currentTime + 0.08);
-      } else if (type === 'score') {
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.type = 'square';
-        osc.frequency.setValueAtTime(587.33, ctx.currentTime); // D5
-        osc.frequency.setValueAtTime(880, ctx.currentTime + 0.08); // A5
-        gain.gain.setValueAtTime(0.2, ctx.currentTime);
-        gain.gain.linearRampToValueAtTime(0.01, ctx.currentTime + 0.2);
-        osc.start();
-        osc.stop(ctx.currentTime + 0.2);
-      } else if (type === 'hit') {
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.type = 'sawtooth';
-        osc.frequency.setValueAtTime(120, ctx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(40, ctx.currentTime + 0.25);
-        gain.gain.setValueAtTime(0.3, ctx.currentTime);
-        gain.gain.linearRampToValueAtTime(0.01, ctx.currentTime + 0.25);
-        osc.start();
-        osc.stop(ctx.currentTime + 0.25);
-      }
-    } catch {
-      // Audio context might be restricted before user interaction
-    }
-  }, [muted]);
+  // Sound generator (disabled as requested)
+  const playSound = useCallback((_type: 'jump' | 'score' | 'hit') => {
+    // Game sound disabled
+  }, []);
 
   useEffect(() => {
     setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
@@ -642,35 +596,23 @@ export const DinoGame: React.FC<DinoGameProps> = ({ className = '' }) => {
         className="w-full h-full object-contain relative z-10 cursor-pointer"
       />
 
-      {/* Sound Mute/Unmute Toggle */}
-      <button 
-        type="button"
-        onClick={(e) => {
-          e.stopPropagation();
-          setMuted(!muted);
-        }}
-        className="absolute top-4 left-4 z-20 w-8 h-8 rounded-full bg-white/80 hover:bg-black hover:text-white text-neutral-800 backdrop-blur border border-neutral-300/80 flex items-center justify-center transition-all shadow-sm"
-        title={muted ? 'Unmute game audio' : 'Mute game audio'}
-      >
-        {muted ? <VolumeX size={15} /> : <Volume2 size={15} />}
-      </button>
-
-      {/* Game Over UI Overlay (Play Again button only) */}
+      {/* Game Over UI Overlay - Fills the entire Hero section all the way to the top of the website */}
       {gameState === 'GAMEOVER' && (
-        <div className="absolute inset-0 z-30 bg-black/10 backdrop-blur-[2px] flex flex-col items-center justify-end pb-4 sm:pb-6">
-          <div className="bg-white/95 border border-neutral-300 rounded-2xl p-4 shadow-2xl text-center animate-in fade-in zoom-in-95 duration-200">
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                handleJump();
-              }}
-              className="py-2.5 px-6 bg-black hover:bg-neutral-800 text-white rounded-full text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow-md transition-transform active:scale-95 cursor-pointer whitespace-nowrap"
-            >
-              <RotateCcw size={14} />
-              <span>Play Again</span>
-            </button>
-          </div>
+        <div 
+          onClick={() => handleJump()}
+          className="fixed inset-0 z-50 bg-black/60 backdrop-blur-md flex flex-col items-center justify-center p-4 animate-in fade-in zoom-in-95 duration-200 cursor-pointer"
+        >
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleJump();
+            }}
+            className="py-3.5 px-8 bg-white hover:bg-neutral-100 active:scale-95 text-black rounded-full text-xs sm:text-sm font-extrabold uppercase tracking-widest flex items-center justify-center gap-2.5 shadow-2xl transition-all cursor-pointer border border-white/20"
+          >
+            <RotateCcw size={16} />
+            <span>Play Again</span>
+          </button>
         </div>
       )}
 
