@@ -4,47 +4,15 @@ import { Palette, Rocket, Globe, Zap, Target, Cpu, Video } from 'lucide-react';
 import { Project, Service, Stat } from './types';
 
 export const PROJECTS: Project[] = [
-  {
-    id: '1',
-    title: 'Modern Identity',
-    category: 'Brand Design',
-    image: 'https://picsum.photos/800/600?random=1',
-    images: [
-      'https://picsum.photos/800/600?random=1',
-      'https://picsum.photos/800/600?random=11',
-      'https://picsum.photos/800/600?random=12'
-    ],
-    description: 'A complete visual overhaul for a forward-thinking tech consultancy, focusing on minimalism and technical precision.',
-    client: 'Nexo Tech',
-    year: '2023',
-    tags: ['Branding', 'Strategy', 'UI/UX'],
-    results: ['40% increase in brand recognition', 'Full visual systems delivered'],
-  },
-  {
-    id: '2',
-    title: 'Social Flux',
-    category: 'Campaign',
-    image: 'https://picsum.photos/800/1000?random=2',
-    images: [
-      'https://picsum.photos/800/1000?random=2',
-      'https://picsum.photos/800/1000?random=21',
-      'https://picsum.photos/800/1000?random=22'
-    ],
-    description: 'A multi-platform digital campaign designed to spark viral growth through high-energy motion design and bold typography.',
-    client: 'Flux Media',
-    year: '2023',
-    tags: ['Campaign', 'Motion', 'Digital'],
-    results: ['1.2M+ Reach', '25% higher engagement than previous quarter'],
-  },
     {
     id: '5',
     title: 'Greenside Sport Med',
     category: 'Web Design',
-    image: 'https://wonderlandstudio.co.za/donotdelete/images/website/gsmwebsite.png',
+    image: 'https://donotdelete.wonderlandstudio.co.za/wswebsite/gsmwebsite.png',
     images: [
-      'https://wonderlandstudio.co.za/donotdelete/images/website/gsmwebsite.png',
-      'https://wonderlandstudio.co.za/donotdelete/images/website/gsmmobile.png',
-      'https://wonderlandstudio.co.za/donotdelete/images/website/gsmipad.png'
+      'https://donotdelete.wonderlandstudio.co.za/wswebsite/gsmwebsite.png',
+      'https://donotdelete.wonderlandstudio.co.za/wswebsite/gsmmobile.png',
+      'https://donotdelete.wonderlandstudio.co.za/wswebsite/gsmipad.png'
     ],
     description: 'A dynamic, patient-centric web eco-system developed for an elite sports medicine and physician athletic recovery clinic.',
     client: 'Greenside Sport Med',
@@ -56,33 +24,17 @@ export const PROJECTS: Project[] = [
     id: '6',
     title: 'Transformation Fund',
     category: 'Web Design',
-    image: 'https://wonderlandstudio.co.za/donotdelete/images/website/TF_Website_0.png',
+    image: 'https://donotdelete.wonderlandstudio.co.za/wswebsite/TF_Website_0.png',
     images: [
-      'https://wonderlandstudio.co.za/donotdelete/images/website/TF_Website_0.png',
-      'https://wonderlandstudio.co.za/donotdelete/images/website/TF_Web_1.png',
-      'https://wonderlandstudio.co.za/donotdelete/images/website/TF_Ipad_Mobile.png'
+      'https://donotdelete.wonderlandstudio.co.za/wswebsite/TF_Website_0.png',
+      'https://donotdelete.wonderlandstudio.co.za/wswebsite/TF_Web_1.png',
+      'https://donotdelete.wonderlandstudio.co.za/wswebsite/TF_Ipad_Mobile.png'
     ],
     description: 'A secure, high-performance web platform and user portal designed to streamline fund transparency, real-time grant metrics, and community-driven resource allocation.',
     client: 'Transformation Fund',
     year: '2026',
     tags: ['Web Design', 'UI/UX', 'Development'],
     results: ['Seamless cross-device portal responsiveness', 'Interactive allocation transparency dashboard', 'Sub-1s page transitions and metric loading'],
-  },
-  {
-    id: '4',
-    title: 'Nectar Spirits',
-    category: 'Packaging',
-    image: 'https://picsum.photos/800/600?random=5',
-    images: [
-      'https://picsum.photos/800/600?random=5',
-      'https://picsum.photos/800/600?random=51',
-      'https://picsum.photos/800/600?random=52'
-    ],
-    description: 'Premium spirits packaging that blends traditional artisanal aesthetics with modern luxury finishes.',
-    client: 'Nectar Distilleries',
-    year: '2023',
-    tags: ['Packaging', 'Logotype', 'Print'],
-    results: ['Winner of Design Excellence 2023', 'National distribution achieved'],
   },
 ];
 

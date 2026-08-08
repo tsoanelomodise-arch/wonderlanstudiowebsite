@@ -9,9 +9,12 @@ import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Background from './components/Background';
+import WorkCMS from './components/WorkCMS';
+import { Sliders } from 'lucide-react';
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState('home');
+  const [isCmsOpen, setIsCmsOpen] = useState(false);
 
   const handleNavigate = (sectionId: string) => {
     setActiveSection(sectionId);
@@ -71,7 +74,18 @@ const App: React.FC = () => {
         <Contact />
       </main>
 
-      <Footer />
+      {/* Floating CMS Actions Console Key */}
+      <button
+        onClick={() => setIsCmsOpen(true)}
+        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex items-center gap-2 px-3.5 sm:px-4 py-2.5 sm:py-3 bg-black hover:bg-neutral-800 text-white font-bold tracking-wider text-[10px] sm:text-[11px] uppercase rounded-full border border-neutral-700 shadow-2xl transition-all duration-300 group cursor-pointer active:scale-95"
+        title="Open Studio Case Studies CMS operations console"
+      >
+        <Sliders size={13} className="group-hover:rotate-45 transition-transform duration-500 text-white" />
+        <span>Manage Works</span>
+      </button>
+
+      <WorkCMS isOpen={isCmsOpen} onClose={() => setIsCmsOpen(false)} />
+      <Footer onCmsClick={() => setIsCmsOpen(true)} />
     </div>
   );
 };
