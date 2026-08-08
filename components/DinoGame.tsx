@@ -106,6 +106,10 @@ export const DinoGame: React.FC<DinoGameProps> = ({ className = '' }) => {
     animationFrameId: 0,
   });
 
+  const touchStartRef = useRef<{ x: number; y: number; time: number } | null>(null);
+  const isSwipingRef = useRef<boolean>(false);
+  const wasTouchedRef = useRef<boolean>(false);
+
   // Keep highScore ref up to date
   useEffect(() => {
     engineRef.current.highScore = highScore;
@@ -146,12 +150,14 @@ export const DinoGame: React.FC<DinoGameProps> = ({ className = '' }) => {
     const engine = engineRef.current;
     if (engine.state !== 'RUNNING') return;
     
+    const wasDucking = engine.dino.isDucking;
     engine.dino.isDucking = isDucking;
+
     if (isDucking) {
-      if (!engine.dino.isGrounded) {
+      if (!engine.dino.isGrounded && !wasDucking) {
         // Fast drop when in air and ducking
-        engine.dino.vy += 4;
-      } else {
+        engine.dino.vy += 6;
+      } else if (engine.dino.isGrounded) {
         engine.dino.height = 26;
         engine.dino.width = 54;
         engine.dino.y = 190 - 26;
@@ -164,6 +170,53 @@ export const DinoGame: React.FC<DinoGameProps> = ({ className = '' }) => {
       }
     }
   }, []);
+
+  // Touch Gesture Handlers
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (e.target instanceof HTMLElement && e.target.tagName === 'BUTTON') return;
+    
+    wasTouchedRef.current = true;
+    const touch = e.touches[0];
+    touchStartRef.current = { x: touch.clientX, y: touch.clientY, time: Date.now() };
+    isSwipingRef.current = false;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!touchStartRef.current) return;
+    const touch = e.touches[0];
+    const deltaX = touch.clientX - touchStartRef.current.x;
+    const deltaY = touch.clientY - touchStartRef.current.y;
+
+    // Swipe Down -> Duck
+    if (deltaY > 15 && Math.abs(deltaY) > Math.abs(deltaX)) {
+      isSwipingRef.current = true;
+      handleDuck(true);
+    } else if (deltaY < -15 && Math.abs(deltaY) > Math.abs(deltaX)) {
+      // Swipe Up -> Jump
+      if (!isSwipingRef.current) {
+        isSwipingRef.current = true;
+        handleDuck(false);
+        handleJump();
+      }
+    }
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (e.target instanceof HTMLElement && e.target.tagName === 'BUTTON') return;
+
+    // Release duck state whenever touch ends
+    handleDuck(false);
+
+    // If tap (not a swipe)
+    if (!isSwipingRef.current && touchStartRef.current) {
+      handleJump();
+    }
+
+    touchStartRef.current = null;
+    setTimeout(() => {
+      wasTouchedRef.current = false;
+    }, 300);
+  };
 
   // Keyboard Event Listeners
   useEffect(() => {
@@ -575,14 +628,13 @@ export const DinoGame: React.FC<DinoGameProps> = ({ className = '' }) => {
       ref={containerRef}
       className={`relative w-full aspect-[16/9] sm:aspect-[21/9] max-h-[380px] sm:max-h-[440px] rounded-none overflow-hidden bg-transparent group select-none touch-none ${className}`}
       onClick={() => {
+        if (wasTouchedRef.current) return;
         handleJump();
       }}
-      onTouchStart={(e) => {
-        // Prevent default touch behaviors like pull-to-refresh or double tap zoom when tapping the game
-        if (e.target instanceof HTMLElement && e.target.tagName !== 'BUTTON') {
-          handleJump();
-        }
-      }}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+      onTouchCancel={handleTouchEnd}
     >
       {/* Transparent Game Canvas */}
       <canvas 
@@ -626,7 +678,7 @@ export const DinoGame: React.FC<DinoGameProps> = ({ className = '' }) => {
 
       {/* Mobile Touch Controls Overlay */}
       {isTouchDevice && gameState === 'RUNNING' && (
-        <div className="absolute bottom-3 left-0 right-0 z-20 flex justify-between px-6 pointer-events-auto">
+        <div className="absolute bottom-3 left-0 right-0 z-20 flex justify-between px-4 sm:px-6 pointer-events-auto">
           <button
             type="button"
             onTouchStart={(e) => {
@@ -639,9 +691,9 @@ export const DinoGame: React.FC<DinoGameProps> = ({ className = '' }) => {
               e.stopPropagation();
               handleDuck(false);
             }}
-            className="px-5 py-2.5 rounded-full bg-black/80 active:bg-black text-white text-xs font-black uppercase tracking-wider backdrop-blur shadow-lg border border-white/20"
+            className="px-4 py-2 rounded-full bg-black/80 active:bg-black text-white text-[10px] sm:text-xs font-black uppercase tracking-wider backdrop-blur shadow-lg border border-white/20 active:scale-95 transition-transform"
           >
-            DUCK
+            DUCK (Swipe ↓)
           </button>
 
           <button
@@ -651,9 +703,9 @@ export const DinoGame: React.FC<DinoGameProps> = ({ className = '' }) => {
               e.stopPropagation();
               handleJump();
             }}
-            className="px-6 py-2.5 rounded-full bg-black text-white text-xs font-black uppercase tracking-wider backdrop-blur shadow-lg border border-white/20"
+            className="px-5 py-2 rounded-full bg-black text-white text-[10px] sm:text-xs font-black uppercase tracking-wider backdrop-blur shadow-lg border border-white/20 active:scale-95 transition-transform"
           >
-            JUMP
+            JUMP (Tap / Swipe ↑)
           </button>
         </div>
       )}
