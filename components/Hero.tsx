@@ -19,9 +19,22 @@ const CLIENT_LOGOS = [
 
 const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
   const reveal = useReveal();
+  const trustedReveal = useReveal();
+  const [isScrolled, setIsScrolled] = React.useState(false);
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 30);
+    };
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const shouldShow = isScrolled && trustedReveal.isVisible;
 
   return (
-    <section className="relative pt-28 sm:pt-40 md:pt-52 pb-10 flex flex-col items-center justify-between overflow-hidden bg-transparent">
+    <section className="relative pt-24 sm:pt-32 md:pt-36 pb-10 flex flex-col items-center justify-between overflow-hidden bg-transparent">
       
       {/* Top Hero Container */}
       <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 text-center relative z-20">
@@ -43,21 +56,36 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
       </div>
 
       {/* Interactive Google Chrome Dino Game */}
-      <div className="w-full max-w-6xl mx-auto px-2 sm:px-4 relative z-10 -mt-16 sm:-mt-32 md:-mt-44 mb-2 flex justify-center items-center">
+      <div className="w-full max-w-6xl mx-auto px-2 sm:px-4 relative z-10 -mt-20 sm:-mt-40 md:-mt-52 mb-2 flex justify-center items-center">
         <DinoGame />
       </div>
 
       {/* Trusted Clients / Logos Section */}
-      <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 relative z-20 pt-6">
+      <div 
+        ref={trustedReveal.ref as any}
+        className="w-full max-w-6xl mx-auto px-4 sm:px-6 relative z-20 pt-6"
+      >
         <div className="text-center mb-6">
-          <p className="text-[11px] font-semibold tracking-widest text-neutral-400 uppercase">
+          <p className={`text-[11px] font-semibold tracking-widest text-neutral-400 uppercase transition-all duration-700 ${
+            shouldShow ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3 pointer-events-none'
+          }`}>
             Trusted by companies of every scale
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-5 sm:gap-8 md:gap-14 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
+        <div className="flex flex-wrap items-center justify-center gap-5 sm:gap-8 md:gap-14 opacity-80 hover:opacity-100 grayscale hover:grayscale-0 transition-opacity duration-500">
           {CLIENT_LOGOS.map((client, idx) => (
-            <span key={idx} className={`${client.font} text-neutral-800 hover:text-black transition-colors`}>
+            <span 
+              key={idx} 
+              className={`${client.font} text-neutral-800 hover:text-black transition-all duration-700 ${
+                shouldShow 
+                  ? 'opacity-100 translate-y-0 scale-100' 
+                  : 'opacity-0 translate-y-6 scale-90 pointer-events-none'
+              }`}
+              style={{
+                transitionDelay: shouldShow ? `${idx * 100 + 150}ms` : '0ms'
+              }}
+            >
               {client.name}
             </span>
           ))}

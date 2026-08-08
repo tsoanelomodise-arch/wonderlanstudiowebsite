@@ -9,7 +9,7 @@ export const DinoGame: React.FC<DinoGameProps> = ({ className = '' }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
 
-  const [gameState, setGameState] = useState<'START' | 'RUNNING' | 'GAMEOVER'>('RUNNING');
+  const [gameState, setGameState] = useState<'START' | 'RUNNING' | 'GAMEOVER'>('START');
   const [score, setScore] = useState<number>(0);
   const [highScore, setHighScore] = useState<number>(() => {
     try {
@@ -19,6 +19,7 @@ export const DinoGame: React.FC<DinoGameProps> = ({ className = '' }) => {
     }
   });
   const [isTouchDevice, setIsTouchDevice] = useState<boolean>(false);
+  const [isScrolled, setIsScrolled] = useState<boolean>(false);
 
   // Sound generator (disabled as requested)
   const playSound = useCallback((_type: 'jump' | 'score' | 'hit') => {
@@ -27,11 +28,18 @@ export const DinoGame: React.FC<DinoGameProps> = ({ className = '' }) => {
 
   useEffect(() => {
     setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 40);
+    };
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   // Game Engine state refs to avoid state lag inside requestAnimationFrame
   const engineRef = useRef({
-    state: 'RUNNING' as 'START' | 'RUNNING' | 'GAMEOVER',
+    state: 'START' as 'START' | 'RUNNING' | 'GAMEOVER',
     score: 0,
     highScore: highScore,
     speed: 6.5,
@@ -596,11 +604,11 @@ export const DinoGame: React.FC<DinoGameProps> = ({ className = '' }) => {
         className="w-full h-full object-contain relative z-10 cursor-pointer"
       />
 
-      {/* Game Over UI Overlay - Fills the entire Hero section all the way to the top of the website */}
-      {gameState === 'GAMEOVER' && (
+      {/* Start Game UI Overlay */}
+      {gameState === 'START' && (
         <div 
           onClick={() => handleJump()}
-          className="fixed inset-0 z-50 bg-black/60 backdrop-blur-md flex flex-col items-center justify-center p-4 animate-in fade-in zoom-in-95 duration-200 cursor-pointer"
+          className="absolute inset-0 z-30 flex flex-col items-center justify-end pb-8 sm:pb-16 p-4 cursor-pointer"
         >
           <button
             type="button"
@@ -608,56 +616,60 @@ export const DinoGame: React.FC<DinoGameProps> = ({ className = '' }) => {
               e.stopPropagation();
               handleJump();
             }}
-            className="py-3.5 px-8 bg-white hover:bg-neutral-100 active:scale-95 text-black rounded-full text-xs sm:text-sm font-extrabold uppercase tracking-widest flex items-center justify-center gap-2.5 shadow-2xl transition-all cursor-pointer border border-white/20"
+            className="py-3 px-8 bg-black hover:bg-neutral-800 active:scale-95 text-white rounded-full text-xs sm:text-sm font-extrabold uppercase tracking-widest flex items-center justify-center gap-2 shadow-xl transition-all cursor-pointer border border-white/20"
           >
-            <RotateCcw size={16} />
-            <span>Play Again</span>
+            <span>Start Game</span>
           </button>
         </div>
       )}
 
-
-
-      {/* Mobile Touch Controls Overlay */}
-      {isTouchDevice && gameState === 'RUNNING' && (
-        <div className="absolute bottom-3 left-0 right-0 z-20 flex justify-between px-4 sm:px-6 pointer-events-auto">
-          <button
-            type="button"
-            onTouchStart={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              handleDuck(true);
-            }}
-            onTouchEnd={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              handleDuck(false);
-            }}
-            className="px-4 py-2 rounded-full bg-black/80 active:bg-black text-white text-[10px] sm:text-xs font-black uppercase tracking-wider backdrop-blur shadow-lg border border-white/20 active:scale-95 transition-transform"
+      {/* Game Over UI Overlay */}
+      {gameState === 'GAMEOVER' && (
+        <>
+          {/* Fullscreen Hero overlay - fades out smoothly when user scrolls down */}
+          <div 
+            onClick={() => handleJump()}
+            className={`fixed inset-0 z-50 bg-black/60 backdrop-blur-md flex flex-col items-center justify-end pb-16 sm:pb-28 p-4 transition-all duration-300 cursor-pointer ${
+              isScrolled ? 'opacity-0 pointer-events-none' : 'opacity-100'
+            }`}
           >
-            DUCK (Swipe ↓)
-          </button>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleJump();
+              }}
+              className="py-3.5 px-8 bg-white hover:bg-neutral-100 active:scale-95 text-black rounded-full text-xs sm:text-sm font-extrabold uppercase tracking-widest flex items-center justify-center gap-2.5 shadow-2xl transition-all cursor-pointer border border-white/20"
+            >
+              <RotateCcw size={16} />
+              <span>Play Again</span>
+            </button>
+          </div>
 
-          <button
-            type="button"
-            onTouchStart={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              handleJump();
-            }}
-            className="px-5 py-2 rounded-full bg-black text-white text-[10px] sm:text-xs font-black uppercase tracking-wider backdrop-blur shadow-lg border border-white/20 active:scale-95 transition-transform"
-          >
-            JUMP (Tap / Swipe ↑)
-          </button>
-        </div>
+          {/* Compact game restart overlay when user scrolls down */}
+          {isScrolled && (
+            <div 
+              onClick={() => handleJump()}
+              className="absolute inset-0 z-30 bg-black/20 backdrop-blur-xs flex items-center justify-center cursor-pointer animate-in fade-in duration-200"
+            >
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleJump();
+                }}
+                className="py-3 px-6 bg-black hover:bg-neutral-800 active:scale-95 text-white rounded-full text-xs font-extrabold uppercase tracking-widest flex items-center justify-center gap-2 shadow-xl transition-all cursor-pointer border border-white/20"
+              >
+                <RotateCcw size={15} />
+                <span>Play Again</span>
+              </button>
+            </div>
+          )}
+        </>
       )}
 
-      {/* Bottom Hint Bar */}
-      <div className="absolute bottom-2 right-4 z-20 hidden md:flex items-center gap-2 text-[10px] text-neutral-500 font-mono tracking-wider pointer-events-none">
-        <span>[SPACE] Jump</span>
-        <span>•</span>
-        <span>[DOWN] Duck</span>
-      </div>
+
+
     </div>
   );
 };
